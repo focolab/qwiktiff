@@ -11,8 +11,9 @@ import time
 
 
 x1, y1, dx, dy = 87, 0, 300, 80
-#wd = 'C:/Users/rldun/Desktop/FC053_PANNEURONAL_GCAMP6F_MK2ASH_030519/tiff_stacks/runA_8MIN_run1(0-100sec)/'
-wd = 'C:/Users/rldun/Desktop/FC053_PANNEURONAL_GCAMP6F_MK2ASH_030519/tiff_stacks/runA_8MIN_run1(100-300sec)/'
+# wd = 'C:/Users/rldun/Desktop/FC053_PANNEURONAL_GCAMP6F_MK2ASH_030519/tiff_stacks/runA_8MIN_run1(0-100sec)/'
+# wd = 'C:/Users/rldun/Desktop/FC053_PANNEURONAL_GCAMP6F_MK2ASH_030519/tiff_stacks/runA_8MIN_run1(100-300sec)/'
+wd = 'C:/Users/rldun/Desktop/FC053_PANNEURONAL_GCAMP6F_MK2ASH_030519/tiff_stacks/runA_8MIN_run1(300-479sec)/'
 # wd = 'C:/Users/rldun/Desktop/test_tiff_writing/'
 
 # get files in dir
@@ -38,6 +39,7 @@ except Exception as err:
 
 # print a helpful output
 print('Streaming {} frames from {} files.'.format(total_frames, len(fnames)))
+frame_print_num = total_writes // 15
 t0 = time.time()
 # do processing
 # iterate pages and crop
@@ -59,7 +61,7 @@ try:
             percent_done = 100 * (total_writes / total_frames)
             t = time.time()
             time_left = (t - t0) / (percent_done / 100) - (t - t0)
-            if total_writes % 1000 == 0:
+            if total_writes % frame_print_num == 0:
                 print('%{:.2f} done, {} frames written. ~{:.2f}s left...'.format(percent_done, total_writes, time_left))
 
 except Exception as err:
