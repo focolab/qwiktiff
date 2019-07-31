@@ -12,6 +12,7 @@ fnames = [
 
 # params for ordering
 numz = 11
+numt = 2080
 
 # batch processing
 t0 = time.time()
@@ -27,17 +28,17 @@ for fname in fnames:
     fi = time.time()
     arr = tf.TiffFile(fname).asarray().astype(np.uint16)
     print('File {} took {} seconds to load.'.format(fname, time.time()-fi))
-    tw = tf.TiffWriter(output_fname, imagej=True)
 
     # get dims... might already be formatted tzyx or tzcyx
-    numt = arr.shape[0]
     numy = arr.shape[-2]
     numx = arr.shape[-1]
 
     # write TZCYX
     fo = time.time()
+    tw = tf.TiffWriter(output_fname, bigtiff=True)
     tw.save(arr.reshape((numt, numz, 1, numy, numx)))
     tw.close()
+    # tf.imwrite(arr.reshape((numt, numz, 1, numy, numx)), bigtiff=True, metadata={'axes': 'TZCYX'})
     print('File {} took {} seconds to save'.format(output_fname, time.time() - fo))
     print('File {} took {} seconds to process end-to-end.'.format(fname, time.time() - t))
 
