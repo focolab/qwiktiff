@@ -57,23 +57,3 @@ finally:
 
 print('That took {} seconds'.format(t1 - t0))
 
-#########################
-
-import h5py
-import tifffile as tf
-
-#numt = 4800
-#numz = 1
-#numx = 3500
-#numy = 3446
-#numc = 1
-
-# load
-fname = tf.TiffFile('20190723_1p_agar_ir_200animals_diffused_walkingtest2')
-# fname = 'combined.tif'
-arr = tf.TiffFile(fname + '.tif').asarray()
-
-# save as h5
-f = h5py.File(fname + '.h5', "w")
-f.create_dataset('data', data=arr)
-f.close()
