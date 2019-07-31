@@ -10,6 +10,9 @@ fnames = [
     '20190702_wormd_561_1562089853661.tif'
 ]
 
+# params for ordering
+numz = 11
+
 # batch processing
 t0 = time.time()
 for fname in fnames:
@@ -26,11 +29,10 @@ for fname in fnames:
     print('File {} took {} seconds to load.'.format(fname, time.time()-fi))
     tw = tf.TiffWriter(output_fname, imagej=True)
 
-    # get dims
+    # get dims... might already be formatted tzyx or tzcyx
     numt = arr.shape[0]
-    numz = arr.shape[1]
-    numy = arr.shape[2]
-    numx = arr.shape[3]
+    numy = arr.shape[-2]
+    numx = arr.shape[-1]
 
     # write TZCYX
     fo = time.time()
