@@ -5,16 +5,19 @@ import time
 
 # load
 t0 = time.time()
-fname = '20190723_1p_agar_ir_200animals_diffused_walkingtest2'
+#fname = '20190731_1percentAgar_100animals_starved_Neopixel2LED_top'
+fname='20190731_1percentAgar_100animals_starved_Neopixel2LED_top_crop-circled'
+fname = 'combined'
+
 # fname = 'combined.tif'
-arr = tf.TiffFile(fname + '.tif').asarray()
+arr = tf.TiffFile(fname + '.tiff').asarray()
 t1 = time.time()
 
 print('Loading file took {} seconds.'.format(t1-t0))
 
 # save as h5
-f = h5py.File(fname + '.h5', "w")
-f.create_dataset('data', data=arr)
+f = h5py.File(fname + '0-2400-2.h5', "w")
+f.create_dataset('data', data=arr[:2400:2,:,:])
 f.close()
 t2 = time.time()
 

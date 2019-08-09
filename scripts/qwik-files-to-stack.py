@@ -4,7 +4,9 @@ import os
 import time
 
 #wd = 'G:/GFP/20190723_GFP/20190723_1%agar_ir_200animals_diffused_walkingtest2/'
-wd = 'G:/GFP/20190722_GFP_1_short/'
+# wd = 'G:/GFP/20190722_GFP_1_short/'
+wd = 'C:/Users/rldun/Desktop/GFP/20190731_1percentAgar_100animals_starved_Neopixel2LED_top/'
+wd = 'G:/GFP/20190730_outputs/'
 
 output_fname = wd + 'combined.tif'
 
@@ -23,28 +25,30 @@ try:
     # load tiffs and append to output
     t0 = time.time()
     for ndx, fname in enumerate(file_list):
-        tiff = tf.TiffFile(wd + fname).asarray()
+        if (fname[-4:] == '.tif') or (fname[-5:] == '.tiff'):
+            #tiff = tf.TiffFile(wd + fname).asarray()
+            tiff = tf.TiffFile(wd + fname).asarray().astype(np.uint8)
 
-        # add singleton dimensions and save
-        # singletons arrange (xy)czt appropriately... this writes T
-        tw.save(np.expand_dims(np.expand_dims(tiff, 0), 0))
+            # add singleton dimensions and save
+            # singletons arrange (xy)czt appropriately... this writes T
+            tw.save(np.expand_dims(np.expand_dims(tiff, 0), 0))
 
-        # example for writing one volume at a time
-        # tlist.append(tiff)
-        # if len(tlist) == 10:
-            # to_write = np.array(tlist).reshape((10, 1, 3446, 3500))
-            # tw.save(to_write)
-            # tlist = []
+            # example for writing one volume at a time
+            # tlist.append(tiff)
+            # if len(tlist) == 10:
+                # to_write = np.array(tlist).reshape((10, 1, 3446, 3500))
+                # tw.save(to_write)
+                # tlist = []
 
-        # print update
-        if ndx % 100 == 0:
-            print('At file: {}'.format(ndx))
-            tn = time.time()
-            print('We have been running for {} seconds.'.format(tn - t0))
+            # print update
+            if ndx % 100 == 0:
+                print('At file: {}'.format(ndx))
+                tn = time.time()
+                print('We have been running for {} seconds.'.format(tn - t0))
 
 except Exception as err:
 
-    print('Error encountered: {}'.format(err))
+    print('Error encountered at file: {}'.format(err, fname))
 
     # close tiffwriter
     tw.close()
