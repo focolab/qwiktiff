@@ -40,7 +40,7 @@ vols_per_file = int(np.floor(2000000000 / volume_byte_size))
 if 'z' in sizes:
     total_files_to_output = int(np.ceil(sizes['t']/vols_per_file))
 else:
-    total_files_to_output = int(np.ceil(sizes[t] * num_z / vols_per_file))
+    total_files_to_output = int(np.ceil(sizes['t'] * num_z / vols_per_file))
 
 # set total number of volumes to write
 if 'z' not in sizes:
@@ -71,7 +71,7 @@ try:
             
             # assemble a volume from individual frames
             if 'z' not in sizes:
-                vol = zeros(num_z, sizes['y'], sizes['x'])
+                vol = np.zeros(num_z, sizes['y'], sizes['x'])
                 for f in range(num_z):
                     frame_ndx = vol_counter * num_z + f
                     vol[f, :, :] = frames[frame_ndx]
