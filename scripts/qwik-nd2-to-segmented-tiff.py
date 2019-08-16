@@ -7,8 +7,8 @@ import time
 
 
 # user parameters
-fname = 'C:/Users/rldun/Desktop/temp rld test/test_080819.nd2'
-num_z = 10
+fname = '/users/sarah/Documents/data/data_wb/20190116_SKN/20190116_SKN_FC036_naive_111nmBtn_40xWI.nd2'
+num_z = 11
 
 # begin code
 if not fname.endswith('.nd2'):
@@ -40,7 +40,7 @@ vols_per_file = int(np.floor(2000000000 / volume_byte_size))
 if 'z' in sizes:
     total_files_to_output = int(np.ceil(sizes['t']/vols_per_file))
 else:
-    total_files_to_output = int(np.ceil(sizes['t'] * num_z / vols_per_file))
+    total_files_to_output = int(np.ceil((sizes['t']/ num_z) / vols_per_file))
 
 # set total number of volumes to write
 if 'z' not in sizes:
@@ -71,7 +71,7 @@ try:
             
             # assemble a volume from individual frames
             if 'z' not in sizes:
-                vol = np.zeros(num_z, sizes['y'], sizes['x'])
+                vol = np.zeros((num_z, sizes['y'], sizes['x']), dtype=np.uint16)
                 for f in range(num_z):
                     frame_ndx = vol_counter * num_z + f
                     vol[f, :, :] = frames[frame_ndx]
