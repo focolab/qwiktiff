@@ -7,7 +7,7 @@ import time
 
 
 # user parameters
-fname = '/users/sarah/Documents/data/data_wb/20190116_SKN/20190116_SKN_FC036_naive_111nmBtn_40xWI.nd2'
+fname = '/users/sarah/Documents/data/data_wb/SKN20190116/SKN20190116_nd2/20190116_SKN_FC036_naive_111nmBtn_40xWI.nd2'
 num_z = 11
 
 # begin code
