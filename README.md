@@ -16,7 +16,7 @@ A ```QwikTiff``` object is instantiated by passing a (properly sorted) list of t
 qtf = QwikTiff(['file1.tiff', 'file2.tiff'])
 qtf.to_json('qwiktiff.json')
 ```
-This only needs to be done once per dataset, and could be automated for multiple datasets by making an ingestion script.
+Exporting ```to_json()``` will store the all important page offsets. This only needs to be done once per dataset, and could be automated for multiple datasets by making an ingestion script.
 
 
 For all subsequent uses, reload from json 
@@ -33,16 +33,11 @@ qtf.get_page(800)   # also fastttt
 That is about it! The rest is up to you :)
 
 # Performance
-
+In progress..
 
 # Use cases
 QwikTiff is useful for large tiff datasets (>10GB) where the time to count pages and build a full page index is prohibitive. This file traversal can be horrendously slow for large datasets on network or HDD storage. Using QwikTiff, analysis and GUI tools can build a full page index without any file traversal. Furthermore, GUI tools can exploit striding and caching strategies to allow faster scrubbing through huge datasets.
 
-QwikTiff is not intended to replace or compete with modern, high performance data formats. These formats will most certainly outperform QwikTiff. But many people are hesitant to convert their primary data because it either requires i. doubled storage ii. deletion of the primary data.
+QwikTiff is not intended to replace or compete with modern, high performance data formats. These formats will most certainly outperform QwikTiff. But many people are hesitant to convert their primary data because it either requires i. doubled storage or ii. deletion of the primary data.
 
 QwikTiff won't give much of a performance boost for small datasets (a few GB), especially if stored on an SSD.
-
-Pycromanager now uses a tiff format that declares byte offsets
-
-
-
