@@ -3,7 +3,7 @@ import shutil
 import time
 from tifffile import TiffWriter, TiffFile
 import numpy as np
-from qwiktiff.qwiktiff import QwikTiff
+from qwiktiff import QwikTiff
 
 class Test00:
     def setUp(self):
