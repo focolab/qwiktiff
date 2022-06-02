@@ -6,8 +6,7 @@ QwikTiff is a lightweight class for performant, lazy data access from large tiff
 
 Byte offsets are tabulated only once, when a tiff stack is first loaded. Subsequent ```QwikTiff``` objects that are reinstantiated from the saved parameters (usually from a json file) will be snappy!
 
-QwikTiff is built on Cristoph Gohlke's tifffile library
-(https://github.com/cgohlke/tifffile/blob/master/tifffile/tifffile.py)
+QwikTiff is built on Cristoph Gohlke's [tifffile library](https://github.com/cgohlke/tifffile/blob/master/tifffile/tifffile.py).
 
 # Usage
 A ```QwikTiff``` object is instantiated by passing a (properly sorted) list of tiff files for one recording.
@@ -36,7 +35,7 @@ That is about it! The rest is up to you :)
 In progress..
 
 # Use cases
-QwikTiff is useful for large tiff datasets (>10GB) where the time to traverse the file(s) and build a full page index is prohibitive. It is especially helpful for large datasets on network or HDD storage. QwikTiff ```get_page()``` calls can be used with Dask(https://docs.dask.org/en/stable/) to construct large, lazy data arrays. Using QwikTiff to access raw data, GUI tools can exploit striding and caching strategies to allow faster scrubbing through huge datasets.
+QwikTiff is useful for large tiff datasets (>10GB) where the time to traverse the file(s) and build a full page index is prohibitive. It is especially helpful for large datasets on network or HDD storage. QwikTiff ```get_page()``` calls can be used with [Dask](https://docs.dask.org/en/stable/) to construct large, lazy data arrays. Using QwikTiff to access raw data, GUI tools can exploit striding and caching strategies to allow faster scrubbing through huge datasets.
 
 QwikTiff is not intended to replace or compete with modern, high performance data formats. These formats will most certainly outperform QwikTiff. But many researchers are hesitant to convert their primary data because it either requires doubled storage or deletion of the primary data.
 
