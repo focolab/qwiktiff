@@ -1,7 +1,4 @@
 # QwikTiff
-Performant, lazy reader of large tiff datasets
-
-# About
 QwikTiff is a lightweight class for performant, lazy data access from large tiff stacks. It works by computing and storing the byte offsets for tiff pages, allowing direct page reads without file traversal.
 
 Byte offsets are tabulated only once, when a tiff stack is first loaded. Subsequent ```QwikTiff``` objects that are reinstantiated from the saved parameters (usually from a json file) will be snappy!
